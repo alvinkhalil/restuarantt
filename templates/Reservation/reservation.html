@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+  <title>Rezervasiya</title>
+{% endblock head %}
+
+{% block body %}
+    <!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Rezervasiya</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+    <!-- Start Reservation -->
+	<div class="reservation-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Rezervasiya</h2>
+						<p>Forumu dolduraraq əvvəlcədən özünzə stol rezerv edə bilərsiniz.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-xs-12">
+					<div class="contact-block">
+						<form  action = "" method="POST">
+                            {% csrf_token %}
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Masa</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+                                            {{form.date}}
+                                            <div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+                                            {{form.time}}
+                                            <div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											{{form.people}}
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h3>Əlaqə</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+                                            {{form.name}}
+                                            <div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											{{form.email}}
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											{{form.number}}
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
+										<button class="btn btn-common" id="submit" type="submit">Sifariş et</button>
+										<div id="msgSubmit" class="h3 text-center hidden"></div> 
+										<div class="clearfix"></div> 
+									</div>
+								</div>
+							</div>            
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Reservation -->
+{% endblock body %}

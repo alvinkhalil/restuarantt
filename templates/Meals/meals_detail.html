@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head %} <title>Məhsul haqqında</title> {% endblock head %}
+{% block body %}
+{% load static %}
+
+<div class="blog-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <br><br><br>
+              
+                    <h2>{{meals.name}}</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-12">
+                <div class="blog-inner-details-page">
+                    <div class="blog-inner-box">
+                        <div class="side-blog-img">
+                            <img class="img-fluid" src="{{ meals.image.url }}" alt="">							
+                        </div>
+                        <div class="inner-blog-detail details-page">
+                            
+                            <ul>
+                                <li><i class="zmdi zmdi-account"></i>Qiyməti : <span>{{meals.price}} AZN</span></li>
+                                <li>|</li>
+                                <li><i class="zmdi zmdi-time"></i>Hazırlanma vaxtı : <span>{{meals.pre_time}} dəq</span></li>
+                                <li>|</li>
+                                <li><i class="zmdi zmdi-time"></i>Adam sayı : <span>{{meals.people}} nəfərlik</span></li>
+                            </ul>
+                            <hr>
+                            <h3>{{meals.description|safe}}</h3>
+
+                     
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+<!-- End details -->
+
+
+{% endblock body %}

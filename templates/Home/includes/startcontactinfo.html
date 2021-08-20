@@ -1,0 +1,42 @@
+<!-- Start Contact info -->
+{% for setting in  settings %}
+  
+
+<div class="contact-imfo-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-volume-control-phone"></i>
+                <div class="overflow-hidden">
+                    <h4>Telefon</h4>
+                    <p class="lead">
+                        (+994) {{setting.phone}}
+                    </p>
+                    <p class="lead">
+                        (+994) {{setting.phone2}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-envelope"></i>
+                <div class="overflow-hidden">
+                    <h4>Email</h4>
+                    <p class="lead">
+                        {{setting.email}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-map-marker"></i>
+                <div class="overflow-hidden">
+                    <h4>Məkan</h4>
+                    <p class="lead">
+                       {{setting.location}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- End Contact info -->

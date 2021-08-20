@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block head %}
+  <title>Əlaqə</title>
+{% endblock head %}
+{% block body %}
+  <!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Əlaqə
+                    </h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start Contact -->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+                    
+					<div class="heading-title text-center">
+						<h2>Əlaqə</h2>
+						<p>Forumu dolduraraq irad, istək, şikayətlərinizi bildirə bilərsiniz.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<form method="POST">
+                        {% csrf_token %}
+                      <div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+                                    {{contacts.name}}
+                                    <div class="help-block with-errors"></div>
+								</div>                                 
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+                                    {{contacts.title}}
+                                    <div class="help-block with-errors"></div>
+								</div>                                 
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+                                    {{contacts.email}}
+                                    <div class="help-block with-errors"></div>
+								</div> 
+							</div>
+							
+							<div class="col-md-12">
+								<div class="form-group"> 
+                                    {{contacts.message}}
+                                    <div class="help-block with-errors"></div>
+								</div>
+								<div class="submit-button text-center">
+									<button class="btn btn-common" id="submit" type="submit">Göndər</button>
+									<div id="msgSubmit" class="h3 text-center hidden"></div> 
+									<div class="clearfix"></div> 
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- End Contact -->
+{% endblock body %}

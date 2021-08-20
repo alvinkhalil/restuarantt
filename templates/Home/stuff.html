@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <title>Heyyət</title>
+{% endblock head %}
+{% block body %}
+  	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>İşçi heyyətimiz</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Stuff -->
+	<div class="stuff-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>İşçi heyyətimiz</h2>
+						<p>Bir birindən fərqli və ləziz yeməklər bişirən heyyətimiz.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+{% for stuff in stuffs  %}
+  
+                 
+                <div class="col-md-4 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="{{stuff.image.url}}" width="400" height="400">
+                            <ul class="social">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                                <li><a href="#" class="fa fa-instagram"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                            </ul>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title">{{stuff.name}}</h3>
+                            <span class="post">{{stuff.job}}</span>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %} 
+            </div>
+		</div>
+	</div>
+	<!-- End Stuff -->
+{% endblock body %}

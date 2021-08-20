@@ -1,0 +1,75 @@
+{% load static %}
+<!-- Start Menu -->
+<div class="menu-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>Menyu</h2>
+                    <p>İstədiyiniz yeməyin üzərinə klikləyərək həmin yemək haqqında ətraflı məlumat əldə edə bilərsiniz.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row inner-menu-box">
+            <div class="col-3">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link" id="all-tab" data-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="false">Hamısı</a>
+
+                    {% for category in categories  %}
+                      
+                    <a class="nav-link" id="{{category}}-tab" data-toggle="pill" href="#{{category.slug}}" role="tab" aria-controls="{{category}}" aria-selected="false">{{category}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade " id="all" role="tabpanel" aria-labelledby="all-tab">
+                        <div class="row">
+                            {% for meal in meals  %}
+
+                            <div class="col-lg-4 col-md-6 special-grid drinks">
+                                <div class="gallery-single fix">
+                                    <img src="{{meal.image.url}}" class= "img-fluid" alt="Image" width="800" height="450">
+                                    <div class="why-text">
+                                        <h4><a href="{% url 'meals:meals_detail' meal.slug %}">{{meal.name}}</a></h4>
+                                        <p>Hazırlanma vaxtı: {{meal.pre_time}} dəq</p>
+                                        <h5>Qiyməti: {{meal.price}} AZN</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    {% for category in categories  %}
+                      
+                    
+                    <div class="tab-pane fade " id="{{category.slug}}" role="tabpanel" aria-labelledby="{{category.slu}}-tab">
+                        <div class="row">
+                            {% for meal in meals  %}
+                              {% if meal.category == category %}   
+                            <div class="col-lg-4 col-md-6 special-grid drinks">
+                                <div class="gallery-single fix">
+                                    <img src="{{meal.image.url}}" class= "img-fluid" alt="Image" width="800" height="450">
+                                    <div class="why-text">
+                                        <h4><a href="{% url 'meals:meals_detail' meal.slug %}">{{meal.name}}</a></h4>
+                                        <p>Hazırlanma vaxtı: {{meal.pre_time}} dəq</p>
+                                        <h5>Qiyməti: {{meal.price}} AZN</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- End Menu -->

@@ -1,0 +1,28 @@
+{% load static %}
+<!-- Start Gallery -->
+<div class="gallery-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>Qalereya</h2>
+                    <p>Bir birindən gözəl və dadından doymayacağınız yeməklər</p>
+                </div>
+            </div>
+        </div>
+        <div class="tz-gallery">
+            <div class="row">
+               {% for g in gallery  %}
+                 
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <a class="lightbox" href="{{g.image.url}}">
+                        <img class="img-fluid" src="{{g.image.url}}" alt="Gallery Images">
+                    </a>
+                </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Gallery -->

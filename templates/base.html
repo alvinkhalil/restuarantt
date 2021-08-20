@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "Home/includes/head.html" %}
+  {% block head %}{% endblock head %}
+  {% block logo %}
+
+  {% endblock logo %}
+
+</head>
+<body>
+  {% if messages %}
+
+  <ul class="messages">
+      {% for message in messages %}
+      {% if message.tags == "info" %}
+      <li class="alert alert-danger">{{ message }}</li>
+
+      {% else %}
+      <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+
+      {% endif %}
+      {% endfor %}
+  </ul>
+
+  {% endif %}
+  {% include "Home/includes/navbar.html" %}
+
+  {% block body %}
+    
+  {% endblock body %}
+  {% block startslides %}{% endblock startslides %}
+  {% block startblog %}{% endblock startblog %}
+  {% block startabout %}{% endblock startabout %}
+  {% block startqt %}{% endblock startqt %}
+  {% block startmenu %}{% endblock startmenu %}
+  {% block startgallery %}{% endblock startgallery %}
+  {% block startcustomreviews %}{% endblock startcustomreviews %}
+
+
+  {% include "Home/includes/startcontactinfo.html" %}
+  {% include "Home/includes/startfotter.html" %}
+  {% include "Home/includes/scripts.html" %}
+
+
+    
+</body>
+</html>

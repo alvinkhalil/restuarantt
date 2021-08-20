@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+  <title>Bloq</title>
+{% endblock head %}
+{% block startslides %}
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Bloq</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+{% endblock startslides %}
+{% block startblog %}
+  <div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>{{post.title}}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img class="img-fluid" src="{{post.image.url}}" alt="">							
+								<div class="date-blog-up">
+									{{post.created}}
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3>{{post.title}}.</h3>
+								<ul>
+									<li><i class="zmdi zmdi-account"></i>{{post.author}}: <span>tərəfindən paylaşılıb</span></li>
+									<li>|</li>
+									<li><i class="zmdi zmdi-time"></i>Tarix : <span>{{post.created}}</span></li>
+								</ul>
+								{{post.content|safe}}
+							</div>
+						</div>
+						<hr>
+
+						<div class="blog-comment-box">
+							<h3>Rəylər</h3>
+							{% if comments %}
+							{% for comment in comments  %}
+
+							<div class="comment-item">
+								  
+								<div class="comment-item-left">
+									<img src="{% static 'images/user-logo.png' %}" alt="">
+								</div>
+								<div class="comment-item-right">
+									<div class="pull-left">
+										<a href="#">{{comment.user}}</a>
+									</div>
+									<div class="pull-right">
+										<i class="fa fa-clock-o" aria-hidden="true"></i>Tarix : <span>{{comment.created}}</span>
+									</div>
+									<div class="des-l">
+										<p>{{comment.content}}</p>
+									</div>
+									<a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> Cavab</a>
+
+								</div>
+								<br>
+			
+								{% for reply in replys %}
+						
+								  
+								<div class="comment-item children">
+									<div class="comment-item-left">
+										<img src="{% static 'images/user-logo.png' %}" alt="">
+									</div>
+									<div class="comment-item-right">
+										<div class="pull-left">
+											<a href="#">{{reply.user}}</a>
+										</div>
+										<div class="pull-right">
+											<i class="fa fa-clock-o" aria-hidden="true"></i>Vaxt : <span>{{reply.created}}</span>
+										</div>
+										<div class="des-l">
+											<p>{{reply.content}}</p>
+										</div>
+									</div>
+								</div>
+	
+
+								{% endfor %}
+
+							</div>
+							<hr>
+							{% endfor %}
+							{% else %}
+							  <h3>Heç bir şərh yoxdur</h3>
+							{% endif %}
+							
+					
+						</div>
+
+
+						<div class="comment-respond-box">
+							<h3>Rəy yazın </h3>
+							<div class="comment-respond-form">
+								<form id="commentrespondform" class="comment-form-respond row" method="POST" type = "POST">
+									{% csrf_token %}
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+											{{comment_form.user}}
+										</div>
+										<div class="form-group">
+											{{comment_form.email}}
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+											{{comment_form.content}}
+										</div>
+									</div>
+
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<button class="btn btn-submit">Göndər</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3>Axtarış</h3>
+						<div class="blog-search-form">
+
+							<form action="{% url 'postbloq:search' %}" method = "POST">
+								{% csrf_token %}
+
+							<input name="search" placeholder="Bloq axtar" type="text" id = "search">
+							<button class="search-btn" type="submit">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							
+							</form>
+						
+						</div>
+						<h3>Kateqoriyalar</h3>
+						<div class="blog-categories">
+							<ul>
+								{% for category in categories %}
+							 <li><a href="{% url 'postbloq:post_category' category.id %}"><span>{{category}}</span></a></li>
+								
+								{% endfor %}
+										
+							</ul>
+						</div>
+						<h3>Son məqalələr</h3>
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								{% for post in recentposts  %}
+								  
+							
+								<div class="recent-box-blog">
+									<div class="recent-img">
+										<img class="img-fluid" src="{{post.image.url}}" width="80" height="80" alt="">
+									</div>
+									<div class="recent-info">
+										<ul>
+											<li><i class="zmdi zmdi-account"></i>{{post.author}} : <span>tərəfindən paylaşılıb.</span></li>
+											<li>|</li>
+											<li><i class="zmdi zmdi-time"></i>Tarix : <span>{{post.created}}</span></li>
+										</ul>
+										<h4><a href="{% url 'postbloq:post_detail' post.id %}">{{post.title}}.</a></h4>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						<h3>Taqlar</h3>
+						<div class="blog-tag-box">
+							<ul class="list-inline tag-list">
+								{% for tag in tags  %}
+								<li class="list-inline-item"><a href="{% url 'postbloq:post_tags' tag %}">{{tag.name}}</a></li>
+								{% endfor %}
+							
+							</ul>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+{% endblock startblog %}
